@@ -74,13 +74,10 @@ if(LINK_CRT_STATIC_LIBS)
 	configure_runtime("static")
 endif()
 
-# to distinguish between debug and release lib
-set(CMAKE_DEBUG_POSTFIX "d")
-
 if(BUILD_SHARED_LIBS)
 	add_library(TinyEXIF SHARED TinyEXIF.cpp TinyEXIF.h)
 
-	if(MSVC_VERSION GREATER 1300)
+	if(MSVC_VERSION GREATER 1300 AND MSVC)
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251") # needs to have dll-interface
 	endif()
 
